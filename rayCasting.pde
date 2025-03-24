@@ -110,8 +110,8 @@ void draw()
     for (int i = 0; i < number_of_rays; i++)
     {
         float angle = (2.0 * PI * current_ray) / (number_of_rays);
-        // PVector ray_start = new PVector(mouseX, mouseY);
-        PVector ray_start = new PVector(width/2, height/2);
+        PVector ray_start = new PVector(mouseX, mouseY);
+        // PVector ray_start = new PVector(width/2, height/2);
         PVector ray_end = PVector.fromAngle(angle);
         ray_end.setMag(light_throw_distance);
         ray_end.add(ray_start);
@@ -152,7 +152,7 @@ void draw()
         shape(inner[k]);
     }
     shape(illumination);
-    saveFrame("images/frame#####.png");
+    // saveFrame("images/frame#####.png");
 }
 
 PVector getIntersection(PVector p1, PVector p2, PVector p3, PVector p4)
@@ -184,28 +184,28 @@ void calculateThrowDistance()
     light_throw_distance = (light_throw_distance_percentage / 100.0) * (sqrt((width * width) + (height * height)));
 }
 
-// void mouseWheel(MouseEvent event)
-// {
-//     float e = event.getCount();
-//     e *= -5;
-//     if ((e < 0 && target > 5) || (e > 0 && target <80))
-//     {
-//         target += e;
-//     }
-// }
+void mouseWheel(MouseEvent event)
+{
+    float e = event.getCount();
+    e *= -5;
+    if ((e < 0 && target > 5) || (e > 0 && target <80))
+    {
+        target += e;
+    }
+}
 
-// void mouseClicked()
-// {
-//     if (mouseButton == LEFT)
-//     {
-//         if (target!= 0)
-//             target = 0;
-//         else if (target ==  0)
-//             target = 80;
-//     }
-//     else if (mouseButton == RIGHT)
-//         for (int i = 0; i < number_of_walls; i++)
-//     {
-//         walls[i] = new Segment();
-//     }
-// }
+void mouseClicked()
+{
+    if (mouseButton == LEFT)
+    {
+        if (target!= 0)
+            target = 0;
+        else if (target ==  0)
+            target = 80;
+    }
+    else if (mouseButton == RIGHT)
+        for (int i = 0; i < number_of_walls; i++)
+    {
+        walls[i] = new Segment();
+    }
+}
